@@ -1,0 +1,141 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url("../images/webgl_background.png") no-repeat fixed;
+    background-size: 100% 100%;
+}
+
+#unity-container {
+    position: absolute
+}
+
+#unity-container.unity-desktop {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+#unity-container.unity-mobile {
+    position: fixed;
+    width: 100%;
+    height: 100%
+}
+
+#unity-canvas {
+    background: #231F20
+}
+
+.unity-mobile #unity-canvas {
+    width: 100%;
+    height: 100%
+}
+
+#unity-loading-bar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none
+}
+
+#unity-logo {
+    width: 154px;
+    height: 130px;
+    background: url('../unity-logo-dark.png') no-repeat center
+}
+
+#unity-progress-bar-empty {
+    width: 141px;
+    height: 18px;
+    margin-top: 10px;
+    margin-left: 6.5px;
+    background: url('../progress-bar-empty-dark.png') no-repeat center
+}
+
+#unity-progress-bar-full {
+    width: 0;
+    height: 18px;
+    margin-top: 10px;
+    background: url('../progress-bar-full-dark.png') no-repeat center
+}
+
+#unity-footer {
+    position: relative
+}
+
+.unity-mobile #unity-footer {
+    display: none
+}
+
+#unity-logo-title-footer {
+    float: left;
+    width: 102px;
+    height: 38px;
+    background: url('../unity-logo-title-footer.png') no-repeat center
+}
+
+#unity-build-title {
+    float: right;
+    margin-right: 10px;
+    line-height: 38px;
+    font-family: arial;
+    font-size: 18px
+}
+
+#unity-fullscreen-button {
+    cursor: pointer;
+    float: right;
+    width: 38px;
+    height: 38px;
+    background: url('../fullscreen-button.png') no-repeat center
+}
+
+#unity-warning {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%);
+    background: white;
+    padding: 10px;
+    display: none
+}
+
+h1{
+    color: white;
+    font-family: "Arial Rounded MT Bold", monospace;
+    font-size: 50px;
+    text-align: center;
+}
+
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#unity-canvas-wrapper {
+    width: calc(90vw - 10vw); /* 90vw minus 2 * 5vw for borders */
+    height: calc(90vh - 10vh); /* 90vh minus 2 * 5vh for borders */
+    margin: auto; /* This creates the border spacing */
+    position: relative;
+
+    aspect-ratio: 16/9;
+    /*border*/
+    border: 10px solid transparent;
+    border-image: url('../images/border.png') 20% round;
+}
+/* This ensures the canvas maintains 16:9 while respecting max width/height */
+@media (min-aspect-ratio: 16/9) {
+    #unity-canvas-wrapper {
+        width: calc((90vh - 10vh) * 16 / 9); /* Height-based width calculation */
+        height: calc(90vh - 10vh);
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    #unity-canvas-wrapper {
+        width: calc(90vw - 10vw);
+        height: calc((90vw - 10vw) * 9 / 16); /* Width-based height calculation */
+    }
+}
+
