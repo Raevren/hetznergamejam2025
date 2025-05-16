@@ -107,6 +107,12 @@ h1{
     text-align: center;
 }
 
+small{
+    color: white;
+    font-family: "Arial Rounded MT Bold", monospace;
+    text-align: center;
+}
+
 #unity-canvas {
     width: 100%;
     height: 100%;
