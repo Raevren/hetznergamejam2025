@@ -1,15 +1,15 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Bear : MonoBehaviour
 {
     #region Events
 
-    UnityEvent OnDamage;
-    
-    UnityEvent OnHeal;
+    Action OnDamage;
 
-    UnityEvent OnDeath;
+    Action OnHeal;
+
+    Action OnDeath;
 
     #endregion
 
@@ -27,11 +27,11 @@ public class Bear : MonoBehaviour
 
     private void Start()
     {
-        OnDamage.RemoveListener(ReduceLive);
-        OnDamage.AddListener(ReduceLive);
-        
-        OnHeal.RemoveListener(IncreaseLive);
-        OnHeal.AddListener(IncreaseLive);
+        OnDamage -= ReduceLive;
+        OnDamage += ReduceLive;
+
+        OnHeal -= IncreaseLive;
+        OnHeal += IncreaseLive;
     }
 
     private void ReduceLive()
@@ -39,7 +39,7 @@ public class Bear : MonoBehaviour
         live--;
         if (live <= 0)
         {
-            OnDeath.Invoke();
+            OnDeath?.Invoke();
         }
     }
 
