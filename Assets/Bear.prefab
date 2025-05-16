@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 4204745970528308005}
   - component: {fileID: 7412919026540292890}
   - component: {fileID: 2704512402198854980}
+  - component: {fileID: 7716694989310701323}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -433,6 +434,7 @@ MonoBehaviour:
   increasePerPress: 0.01
   slowDownThreshold: 0.1
   balancePivot: {fileID: 7863196845436927806}
+  quickTimeEvent: {fileID: 7716694989310701323}
 --- !u!114 &2704512402198854980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,3 +513,15 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7716694989310701323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369191748903971399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952629127c16420fb5c5cec1db1087f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

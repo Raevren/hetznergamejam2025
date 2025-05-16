@@ -1,4 +1,4 @@
-using System;
+using QuickTimeEvents;
 using TMPro;
 using UnityEngine;
 
@@ -17,9 +17,15 @@ public class PlayerSpeed : MonoBehaviour
     [SerializeField] private float slowDownThreshold = 0.00001f;
 
     [SerializeField] private Transform balancePivot; 
+    [SerializeField] private QuickTimeEventManager quickTimeEventManager;
 
     private void Update()
     {
+        if (quickTimeEventManager.IsActive)
+        {
+            return;
+        }
+        
         UpdateSpeedDecrease();
         UpdateBalance();
     }
