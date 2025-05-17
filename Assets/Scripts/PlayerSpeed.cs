@@ -20,6 +20,7 @@ public class PlayerSpeed : MonoBehaviour
 
     [SerializeField] private Transform balancePivot;
     [SerializeField] private QuickTimeEventManager quickTimeEventManager;
+    private PlayerHealth _playerHealth;
 
     private SpriteRenderer _bearRenderer;
     [SerializeField] private TMP_Text speedText; 
@@ -34,10 +35,15 @@ public class PlayerSpeed : MonoBehaviour
     private void Start()
     {
         _bearRenderer = GetComponentInChildren<SpriteRenderer>();
+        _playerHealth = GetComponent<PlayerHealth>();
+
+        _playerHealth.OnRemoveHealth += () => Speed = 0;
     }
 
     private void Update()
     {
+        if(!_playerHealth.IsAllowedToMove) return;
+        
         var deltaScore = Time.deltaTime * (Speed / 50);
         score += deltaScore;
         speedText.text = "Entfernung: " + (Mathf.Round(score * 100) / 100) + "M";

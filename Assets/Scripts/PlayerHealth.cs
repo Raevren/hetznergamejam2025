@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,12 +23,17 @@ public class PlayerHealth : MonoBehaviour
         get => health;
     }
 
+    private bool isRespawning = false;
+    public bool IsAllowedToMove => Health > 0 && !isRespawning;
+    public event Action OnRemoveHealth;
+
     #endregion
 
     #region Methods
 
     private void Update()
     {
+        if(!IsAllowedToMove) return;
         var acceptableAngle = 70;
         var acceptableAngleOtherDIrefction = 360 - 70;
 
@@ -36,19 +43,32 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
         ReduceLive();
     }
 
     private void ReduceLive()
     {
         health--;
+        OnRemoveHealth?.Invoke();
         healthBar.RenderHealth();
 
         if (health <= 0)
         {
             SceneManager.LoadScene(1);
         }
+        else
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    private IEnumerator Respawn()
+    {
+        isRespawning = true;
+        yield return new WaitForSeconds(0.5f);
+        //TODO good animation
+        isRespawning = false;
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
     }
 
     private void IncreaseHealth()
