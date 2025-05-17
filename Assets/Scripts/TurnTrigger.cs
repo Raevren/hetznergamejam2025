@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class TurnTrigger : MonoBehaviour
@@ -17,7 +16,8 @@ public class TurnTrigger : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("LevelGenerator")) return;
         var levelParent = GameObject.FindWithTag("LevelParent");
-        levelParent.GetComponent<LevelRotator>().Rotate(newAngle, turnRadius);
+        var distanceLost = Vector3.Distance(transform.position, other.transform.position);
+        levelParent.GetComponent<LevelRotator>().Rotate(newAngle, turnRadius - distanceLost);
         Destroy(gameObject);
     }
 }

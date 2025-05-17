@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class LevelRotator : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class LevelRotator : MonoBehaviour
     private IEnumerator RotateOverTime(float newAngle, float distance)
     {
         var startRotation = transform.rotation;
-        var endRotation = Quaternion.Euler(0, newAngle, 0);
+        var endRotation = Quaternion.Euler(0, transform.eulerAngles.y + newAngle, 0);
         var distanceDone = 0f;
         var wantedDistance = Mathf.PI * distance / 2f;
 

@@ -1,3 +1,4 @@
+using System;
 using QuickTimeEvents;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PlayerSpeed : MonoBehaviour
     public float Speed { get; private set; } = 1;
 
     // 0 no, -1 left, 1 right
-    private int _previosPres = 0;
+    private int _previousPress = 0;
 
     private float _lastPressedTime = 0;
 
@@ -16,6 +17,13 @@ public class PlayerSpeed : MonoBehaviour
 
     [SerializeField] private Transform balancePivot; 
     [SerializeField] private QuickTimeEventManager quickTimeEventManager;
+
+    private SpriteRenderer _bearRenderer;
+
+    private void Start()
+    {
+        _bearRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     private void Update()
     {
@@ -30,7 +38,7 @@ public class PlayerSpeed : MonoBehaviour
 
     private void UpdateBalance()
     {
-        if(_previosPres == 0) return;
+        if(_previousPress == 0) return;
 
 
         var angle = 0;
@@ -76,12 +84,14 @@ public class PlayerSpeed : MonoBehaviour
     private void TryIncreaseSpeed(int pressedButton)
     {
         _lastPressedTime = Time.time;
-        if (_previosPres != pressedButton)
+        if (_previousPress != pressedButton)
         {
             Speed += increasePerPress;
         }
-        _previosPres = pressedButton;
-        
-        transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previosPres);
+        _previousPress = pressedButton;
+
+        _bearRenderer.transform.localPosition = new Vector3(0.1f * pressedButton, _bearRenderer.transform.localPosition.y, _bearRenderer.transform.localPosition.z);
+        _bearRenderer.flipX = pressedButton < 0;  
+        transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previousPress);
     }
 }
