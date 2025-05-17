@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TurnTrigger : MonoBehaviour
@@ -10,12 +11,13 @@ public class TurnTrigger : MonoBehaviour
     /// <summary>
     /// The speed to turn the levels with
     /// </summary>
-    [SerializeField] private float turnSpeed;
+    [SerializeField] private float turnRadius;
     
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("LevelGenerator")) return;
-        other.GetComponent<LevelGenerator>().SetAngle(newAngle, turnSpeed * 2);
+        var levelParent = GameObject.FindWithTag("LevelParent");
+        levelParent.GetComponent<LevelRotator>().Rotate(newAngle, turnRadius);
         Destroy(gameObject);
     }
 }

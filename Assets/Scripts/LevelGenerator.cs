@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelGenerator : MonoBehaviour
 {
-    /// <summary>
-    /// The time until the next level piece spawns
-    /// </summary>
-    private float _distanceUntilNext;
     private float _currentRotation, _turnSpeed;
     
-    [SerializeField] private float zToSpawnAt, zToDespawnAt;
+    [SerializeField] private float zToDespawnAt;
     [SerializeField] private PlayerSpeed speedScript;
+
+    /// <summary>
+    /// The maximum distance of the next level spawn point until the next element spawns
+    /// </summary>
+    [SerializeField] private float spawnPointDistance;
     
     [SerializeField] private Transform levelParent;
     /// <summary>
@@ -23,17 +22,22 @@ public class LevelGenerator : MonoBehaviour
     /// All currently instantiated levels
     /// </summary>
     [SerializeField] private List<GameObject> instantiatedLevels;
+
+    /// <summary>
+    /// The next level spawn point of the last instantiated level
+    /// </summary>
+    private Transform _currentNextSpawn;
     
     private void Start()
     {
         LoadElements();
+        LoadLevelPoints();
     }
 
     private void Update()
     {
         MoveLevels();
         CheckDistance();
-        Rotate();
     }
 
     /// <summary>
@@ -46,9 +50,9 @@ public class LevelGenerator : MonoBehaviour
         // Moving
         foreach (var level in instantiatedLevels)
         {
-            level.transform.Translate(Vector3.back * (speedScript.Speed * Time.deltaTime));
+            level.transform.position += Vector3.back * (speedScript.Speed * Time.deltaTime);
             // Check if the level should despawn
-            if (level.transform.localPosition.z <= zToDespawnAt) levelsToDespawn.Add(level);
+            if (level.transform.position.z <= zToDespawnAt) levelsToDespawn.Add(level);
         }
         
         // Despawning
@@ -60,27 +64,14 @@ public class LevelGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotate all levels to the current rotation
-    /// </summary>
-    private void Rotate()
-    {
-        levelParent.rotation = Quaternion.RotateTowards(levelParent.rotation, Quaternion.Euler(0, _currentRotation, 0), Time.deltaTime * speedScript.Speed * _turnSpeed);
-    }
-
-    /// <summary>
     /// Wait for the next level piece to spawn
     /// </summary>
     private void CheckDistance()
     {
-        if (_distanceUntilNext > 0)
-        {
-            // Decrease the distance by the current player speed
-            _distanceUntilNext -= Time.deltaTime * speedScript.Speed;
-            return;
-        }
+        // Check if the next element can spawn
+        if (Vector3.Distance(transform.position, _currentNextSpawn.position) > spawnPointDistance) return;
         // Spawn the next level piece
         SpawnElement();
-        _distanceUntilNext = zToSpawnAt;
     }
 
     /// <summary>
@@ -96,14 +87,14 @@ public class LevelGenerator : MonoBehaviour
     /// </summary>
     private void SpawnElement()
     {
-        var level = Instantiate(_levelPrefabs[Random.Range(0, _levelPrefabs.Length)], levelParent);
-        level.transform.Translate(Vector3.forward * zToSpawnAt);
+        var level = Instantiate(_levelPrefabs[Random.Range(0, _levelPrefabs.Length)], _currentNextSpawn.position, _currentNextSpawn.rotation, levelParent);
         instantiatedLevels.Add(level);
+        LoadLevelPoints();
     }
-
-    public void SetAngle(float newAngle, float turnSpeed)
+    
+    private void LoadLevelPoints()
     {
-        _currentRotation = newAngle;
-        _turnSpeed = Mathf.Max(0.1f, turnSpeed);
+        var level = instantiatedLevels[^1].transform;
+        _currentNextSpawn = level.Find("NextSpawn");
     }
 }
