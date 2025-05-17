@@ -58,7 +58,9 @@ public class LevelGenerator : MonoBehaviour
     /// </summary>
     private void SpawnElement()
     {
-        var level = Instantiate(_levelPrefabs[Random.Range(0, _levelPrefabs.Length)], _currentNextSpawn.position, _currentNextSpawn.rotation, levelParent);
+        var level = Instantiate(_levelPrefabs[Random.Range(0, _levelPrefabs.Length)], levelParent);
+        level.transform.position = _currentNextSpawn.position;
+        level.transform.rotation = _currentNextSpawn.rotation;
         instantiatedLevels.Add(level);
         SetSpawnPoint();
 

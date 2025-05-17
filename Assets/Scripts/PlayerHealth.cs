@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(1);
+            LoadGameOver();
         }
         else
         {
@@ -69,6 +70,15 @@ public class PlayerHealth : MonoBehaviour
         //TODO good animation
         isRespawning = false;
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+    }
+
+    private void LoadGameOver()
+    {
+        Instantiate(Resources.Load<GameObject>("Prefabs/BearGameOver"));
+        
+        var sceneLoader = Instantiate(Resources.Load<SceneTransitioner>("Prefabs/CanvasLoadScene"));
+        sceneLoader.StartCoroutine(sceneLoader.LoadSceneIn(2f, 1));
+        gameObject.SetActive(false);
     }
 
     private void IncreaseHealth()
