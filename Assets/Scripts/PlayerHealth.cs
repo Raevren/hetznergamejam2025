@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bear : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class Bear : MonoBehaviour
         if (live <= 0)
         {
             OnDeath?.Invoke();
+            SceneManager.LoadScene(1);
         }
     }
 
