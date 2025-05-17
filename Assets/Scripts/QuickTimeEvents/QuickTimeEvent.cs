@@ -8,8 +8,7 @@ namespace QuickTimeEvents
     {
         [SerializeField] private Key key;
         [SerializeField] private QuickTimeEventManager eventManager;
-        private QuickTimeEventUI _eventUI;
-
+        
         public Key Key => key;
         
         public event Action OnFailed;
@@ -20,24 +19,15 @@ namespace QuickTimeEvents
         
         public abstract void OnButtonReleased(Transform player);
 
-        private void Start()
-        {
-            _eventUI = GetComponentInChildren<QuickTimeEventUI>();
-            _eventUI.gameObject.SetActive(false);
-            _eventUI.SetText(key.ToString());
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.CompareTag("LevelGenerator")) return;
             
             eventManager.StartEvent(this);
-            _eventUI.gameObject.SetActive(true);
         }
 
         private void End()
         {
-            _eventUI.gameObject.SetActive(false);
         }
         
         protected void OnFail()

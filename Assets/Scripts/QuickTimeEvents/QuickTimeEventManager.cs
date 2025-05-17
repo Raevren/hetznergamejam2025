@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +7,14 @@ namespace QuickTimeEvents
     public class QuickTimeEventManager : MonoBehaviour
     {
         private QuickTimeEvent _currentEvent;
-        
+        private QuickTimeEventUI _uiButton;
         public bool IsActive => _currentEvent != null;
+
+        private void Start()
+        {
+            _uiButton = GetComponentInChildren<QuickTimeEventUI>();
+            _uiButton.gameObject.SetActive(false);
+        }
 
         public void OnQuickTimeAction(InputAction.CallbackContext context)
         {
@@ -37,13 +44,16 @@ namespace QuickTimeEvents
             _currentEvent = quickTimeEvent;
             _currentEvent.OnCompleted += RewardQuickTimeEvent;
             _currentEvent.OnFailed += PunishQuickTimeEvent;
-            //TODO display qte overlay
+            
+            _uiButton.SetText(_currentEvent.Key.ToString());
+            _uiButton.gameObject.SetActive(true);
             
             _currentEvent.Started(transform);
         }
 
         private void StopQuickTimeEvent()
         {
+            _uiButton.gameObject.SetActive(false);
             _currentEvent = null;
             _currentEvent.OnCompleted -= RewardQuickTimeEvent;
             _currentEvent.OnFailed -= PunishQuickTimeEvent;

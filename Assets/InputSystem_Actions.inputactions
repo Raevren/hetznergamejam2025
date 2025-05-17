@@ -77,6 +77,17 @@
                     "action": "QuickTimeAction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b060e687-26c8-47c5-a059-04437ed0d719",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTimeAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

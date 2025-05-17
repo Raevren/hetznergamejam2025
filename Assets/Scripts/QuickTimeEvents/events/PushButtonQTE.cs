@@ -14,6 +14,7 @@ namespace QuickTimeEvents.events
         public override void OnButtonPressed(Transform player)
         {
             if(hasJumped) return;
+            hasJumped = true;
             player.SendMessage("jump");
         }
 
