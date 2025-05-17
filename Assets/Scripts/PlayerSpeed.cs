@@ -1,11 +1,11 @@
-using System;
 using QuickTimeEvents;
-using TMPro;
 using UnityEngine;
 
 public class PlayerSpeed : MonoBehaviour
 {
     public float Speed { get; private set; } = 1;
+
+    [field: SerializeField] public float MaxSpeed { get; private set; } = 4;
 
     // 0 no, -1 left, 1 right
     private int _previousPress = 0;
@@ -13,13 +13,20 @@ public class PlayerSpeed : MonoBehaviour
     private float _lastPressedTime = 0;
 
     [SerializeField] private float increasePerPress = 0.1f;
-    [SerializeField] private float slowDownThreshold = 0.00001f;
+    [SerializeField] private float slowDownThreshold = 0.00001f, decreaseSpeed = 0.3f;
 
-    [SerializeField] private Transform balancePivot; 
+    [SerializeField] private Transform balancePivot;
     [SerializeField] private QuickTimeEventManager quickTimeEventManager;
 
     private SpriteRenderer _bearRenderer;
 
+    /// <summary>
+    /// The AudioSource playing sound effects for this bear
+    /// </summary>
+    [SerializeField] private AudioSource sfxSource;
+
+    [SerializeField] private AudioClip wheelLeftSfx, wheelRightSfx;
+    
     private void Start()
     {
         _bearRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -68,16 +75,18 @@ public class PlayerSpeed : MonoBehaviour
             return;
         }
 
-        Speed -= increasePerPress * Time.deltaTime;
+        Speed -= decreaseSpeed * Time.deltaTime;
     }
 
     public void OnBalanceLeft()
     {
+        PlaySound(false);
         TryIncreaseSpeed(-1);
     }
 
     public void OnBalanceRight()
     {
+        PlaySound(true);
         TryIncreaseSpeed(1);
     }
 
@@ -87,11 +96,23 @@ public class PlayerSpeed : MonoBehaviour
         if (_previousPress != pressedButton)
         {
             Speed += increasePerPress;
+            Speed = Mathf.Min(Speed, MaxSpeed);
         }
         _previousPress = pressedButton;
 
         _bearRenderer.transform.localPosition = new Vector3(0.1f * pressedButton, _bearRenderer.transform.localPosition.y, _bearRenderer.transform.localPosition.z);
         _bearRenderer.flipX = pressedButton < 0;  
         transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previousPress);
+    }
+
+    /// <summary>
+    /// Plays the wheel sound
+    /// </summary>
+    private void PlaySound(bool left)
+    {
+        if (sfxSource.isPlaying) return;
+        sfxSource.clip = left ? wheelLeftSfx : wheelRightSfx;
+        sfxSource.pitch = Random.Range(0.7f, 1.3f);
+        sfxSource.Play(0);
     }
 }

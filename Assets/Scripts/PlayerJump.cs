@@ -8,6 +8,8 @@ public class PlayerJump : MonoBehaviour
     private bool isJumping = false;
     private float jumpStartTime;
     private Vector3 startPos;
+    
+    [SerializeField] private AudioSource jumpSound;
 
     void jump()
     {
@@ -22,6 +24,7 @@ public class PlayerJump : MonoBehaviour
 
     void StartJump()
     {
+        jumpSound.Play();
         isJumping = true;
         jumpStartTime = Time.time;
         startPos = transform.position;

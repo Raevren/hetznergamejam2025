@@ -16,8 +16,7 @@ public class TurnTrigger : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("LevelGenerator")) return;
         var levelParent = GameObject.FindWithTag("LevelParent");
-        var distanceLost = Vector3.Distance(transform.position, other.transform.position);
-        levelParent.GetComponent<LevelRotator>().Rotate(newAngle, turnRadius - distanceLost);
+        levelParent.GetComponent<LevelRotator>().Rotate(newAngle, turnRadius);
         Destroy(gameObject);
     }
 }
