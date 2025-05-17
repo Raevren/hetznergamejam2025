@@ -1,69 +1,72 @@
-using System;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Bear : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    #region Events
-
-    Action OnDamage;
-
-    Action OnHeal;
-
-    Action OnDeath;
-
-    #endregion
-
     #region Attributes
 
-    [SerializeField] private int live = 3;
+    [SerializeField] private int health = 3;
+
+    [SerializeField] private int maxHealth = 5;
+
+    [SerializeField] private HealthBar healthBar;
 
     #endregion
 
     #region Properties
 
+    public int Health
+    {
+        get => health;
+    }
+
     #endregion
 
     #region Methods
-
-    private void Start()
-    {
-        OnDamage -= ReduceLive;
-        OnDamage += ReduceLive;
-
-        OnHeal -= IncreaseLive;
-        OnHeal += IncreaseLive;
-    }
 
     private void Update()
     {
         var acceptableAngle = 70;
         var acceptableAngleOtherDIrefction = 360 - 70;
-        
+
         var absAngle = Mathf.Abs(transform.eulerAngles.z);
         if (absAngle < acceptableAngle || absAngle > acceptableAngleOtherDIrefction)
         {
             return;
         }
-        
-        Debug.Log("Death");
+
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
         ReduceLive();
     }
 
     private void ReduceLive()
     {
-        live--;
-        if (live <= 0)
+        health--;
+        healthBar.RenderHealth();
+
+        if (health <= 0)
         {
-            OnDeath?.Invoke();
             SceneManager.LoadScene(1);
         }
     }
 
-    private void IncreaseLive()
+    private void IncreaseHealth()
     {
-        live++;
+        if (health < maxHealth)
+        {
+            health++;
+            healthBar.RenderHealth();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Wird beim Betreten des Triggers ausgeführt
+        if (other.gameObject.CompareTag("Health"))
+        {
+            IncreaseHealth();
+        }
     }
 
     #endregion
