@@ -205,8 +205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10452846, y: -0, z: -0, w: 0.9945219}
-  m_LocalPosition: {x: 0, y: 3, z: -3}
+  m_LocalRotation: {x: 0.10452846, y: 0, z: 0, w: 0.9945219}
+  m_LocalPosition: {x: 3.01, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -853,7 +853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4204745970528308005, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4204745970528308005, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -883,6 +883,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7412919026540292890, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+      propertyPath: quickTimeEventManager
+      value: 
+      objectReference: {fileID: 1099646139}
     - target: {fileID: 8369191748903971399, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_Name
       value: Bear
@@ -892,6 +896,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+--- !u!114 &1099646139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7716694989310701323, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+  m_PrefabInstance: {fileID: 1099646138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952629127c16420fb5c5cec1db1087f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1099646141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7412919026540292890, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+  m_PrefabInstance: {fileID: 1099646138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeea39a49b5801f4697741451b9944ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1314195291
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zToSpawnAt: 50
   zToDespawnAt: -50
-  speedScript: {fileID: 0}
+  speedScript: {fileID: 1099646141}
   levelParent: {fileID: 460587024}
   instantiatedLevels:
   - {fileID: 1418049446}

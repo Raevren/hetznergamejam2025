@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "QuickTimeAction",
+                    "type": "Button",
+                    "id": "1c6a57ee-6c0f-4b5a-8294-7bcee2443e76",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -44,6 +53,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "BalanceRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86a0e884-ec2a-4806-bbbb-c539a34dc861",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTimeAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb553d2e-0804-4b2d-a26f-56018ddb2fdc",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTimeAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
