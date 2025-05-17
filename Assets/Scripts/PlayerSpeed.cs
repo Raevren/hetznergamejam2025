@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerSpeed : MonoBehaviour
 {
     public float Speed { get; private set; } = 1;
-    
-    public TMP_Text SpeedText;
 
     // 0 no, -1 left, 1 right
     private int _previosPres = 0;
@@ -63,7 +61,6 @@ public class PlayerSpeed : MonoBehaviour
         }
 
         Speed -= increasePerPress * Time.deltaTime;
-        SpeedText.text = Speed.ToString();   
     }
 
     private void OnBalanceLeft()
@@ -84,7 +81,6 @@ public class PlayerSpeed : MonoBehaviour
             Speed += increasePerPress;
         }
         _previosPres = pressedButton;
-        SpeedText.text = Speed.ToString();
         
         transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previosPres);
     }
