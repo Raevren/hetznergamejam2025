@@ -36,8 +36,16 @@ public class Bear : MonoBehaviour
 
     private void Update()
     {
-        if (Math.Abs(transform.rotation.z) < 70) return;
+        var acceptableAngle = 70;
+        var acceptableAngleOtherDIrefction = 360 - 70;
         
+        var absAngle = Mathf.Abs(transform.eulerAngles.z);
+        if (absAngle < acceptableAngle || absAngle > acceptableAngleOtherDIrefction)
+        {
+            return;
+        }
+        
+        Debug.Log("Death");
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
         ReduceLive();
     }
