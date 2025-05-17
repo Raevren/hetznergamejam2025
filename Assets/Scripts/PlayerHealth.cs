@@ -34,6 +34,14 @@ public class Bear : MonoBehaviour
         OnHeal += IncreaseLive;
     }
 
+    private void Update()
+    {
+        if (Math.Abs(transform.rotation.z) < 70) return;
+        
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+        ReduceLive();
+    }
+
     private void ReduceLive()
     {
         live--;
