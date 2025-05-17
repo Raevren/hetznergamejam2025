@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,8 +11,8 @@ namespace QuickTimeEvents
 
         public void OnQuickTimeAction(InputAction.CallbackContext context)
         {
-            if(!IsActive) return;
-            if (!_currentEvent.Key.DisplayName().Equals(context.control.displayName)) return;
+            if(_currentEvent == null) return;
+            if(!Keyboard.current[_currentEvent.Key].isPressed) return;
             
             //TODO animate displayed button
             
@@ -45,6 +44,7 @@ namespace QuickTimeEvents
 
         private void StopQuickTimeEvent()
         {
+            _currentEvent = null;
             _currentEvent.OnCompleted -= RewardQuickTimeEvent;
             _currentEvent.OnFailed -= PunishQuickTimeEvent;
         }

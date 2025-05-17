@@ -4,14 +4,13 @@ using UnityEngine.InputSystem;
 
 namespace QuickTimeEvents
 {
-    public abstract class QuickTimeEvent
+    public abstract class QuickTimeEvent : MonoBehaviour
     {
-        public Key Key { get; private set; }
-        
-        public QuickTimeEvent(Key key)
-        {
-            Key = key;
-        }
+        [SerializeField] private Key key;
+        [SerializeField] private QuickTimeEventManager eventManager;
+        private QuickTimeEventUI _eventUI;
+
+        public Key Key => key;
         
         public event Action OnFailed;
         public event Action OnCompleted;
@@ -20,14 +19,36 @@ namespace QuickTimeEvents
         public abstract void OnButtonPressed(Transform player);
         
         public abstract void OnButtonReleased(Transform player);
+
+        private void Start()
+        {
+            _eventUI = GetComponentInChildren<QuickTimeEventUI>();
+            _eventUI.gameObject.SetActive(false);
+            _eventUI.SetText(key.ToString());
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.gameObject.CompareTag("LevelGenerator")) return;
+            
+            eventManager.StartEvent(this);
+            _eventUI.gameObject.SetActive(true);
+        }
+
+        private void End()
+        {
+            _eventUI.gameObject.SetActive(false);
+        }
         
         protected void OnFail()
         {
+            End();
             OnFailed?.Invoke();
         }
 
         protected void OnComplete()
         {
+            End();
             OnCompleted?.Invoke();
         }
     }
