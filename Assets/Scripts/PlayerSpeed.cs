@@ -1,4 +1,5 @@
 using QuickTimeEvents;
+using TMPro;
 using UnityEngine;
 
 public class PlayerSpeed : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerSpeed : MonoBehaviour
 
     private float _lastPressedTime = 0;
 
+    private float score = 0;
+    
     [SerializeField] private float increasePerPress = 0.1f;
     [SerializeField] private float slowDownThreshold = 0.00001f, decreaseSpeed = 0.3f;
 
@@ -19,6 +22,7 @@ public class PlayerSpeed : MonoBehaviour
     [SerializeField] private QuickTimeEventManager quickTimeEventManager;
 
     private SpriteRenderer _bearRenderer;
+    [SerializeField] private TMP_Text speedText; 
 
     /// <summary>
     /// The AudioSource playing sound effects for this bear
@@ -34,6 +38,9 @@ public class PlayerSpeed : MonoBehaviour
 
     private void Update()
     {
+        var deltaScore = Time.deltaTime * (Speed / 50);
+        score += deltaScore;
+        speedText.text = "Entfernung: " + (Mathf.Round(score * 100) / 100) + "M";
         if (quickTimeEventManager.IsActive)
         {
             return;
