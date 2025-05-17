@@ -63,12 +63,12 @@ public class PlayerSpeed : MonoBehaviour
         Speed -= increasePerPress * Time.deltaTime;
     }
 
-    private void OnBalanceLeft()
+    public void OnBalanceLeft()
     {
         TryIncreaseSpeed(-1);
     }
 
-    private void OnBalanceRight()
+    public void OnBalanceRight()
     {
         TryIncreaseSpeed(1);
     }

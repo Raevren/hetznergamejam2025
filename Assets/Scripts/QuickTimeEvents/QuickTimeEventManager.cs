@@ -12,6 +12,7 @@ namespace QuickTimeEvents
 
         public void OnQuickTimeAction(InputAction.CallbackContext context)
         {
+            if(!IsActive) return;
             if (!_currentEvent.Key.DisplayName().Equals(context.control.displayName)) return;
             
             //TODO animate displayed button

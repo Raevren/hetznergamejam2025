@@ -430,11 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeea39a49b5801f4697741451b9944ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedText: {fileID: 0}
   increasePerPress: 0.01
   slowDownThreshold: 0.1
   balancePivot: {fileID: 7863196845436927806}
-  quickTimeEvent: {fileID: 7716694989310701323}
+  quickTimeEventManager: {fileID: 7716694989310701323}
 --- !u!114 &2704512402198854980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -461,11 +460,35 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7412919026540292890}
+        m_TargetAssemblyTypeName: PlayerSpeed, Assembly-CSharp
+        m_MethodName: OnBalanceLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62fe8d12-431a-4770-826c-e4d47b9a34aa
     m_ActionName: 'Player/BalanceLeft[/Keyboard/a]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7412919026540292890}
+        m_TargetAssemblyTypeName: PlayerSpeed, Assembly-CSharp
+        m_MethodName: OnBalanceRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 740add21-6034-4264-82b6-2cefd9418710
     m_ActionName: 'Player/BalanceRight[/Keyboard/d]'
   - m_PersistentCalls:
@@ -508,6 +531,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7716694989310701323}
+        m_TargetAssemblyTypeName: QuickTimeEvents.QuickTimeEventManager, Assembly-CSharp
+        m_MethodName: OnQuickTimeAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1c6a57ee-6c0f-4b5a-8294-7bcee2443e76
+    m_ActionName: 'Player/QuickTimeAction[/Keyboard/a,/Keyboard/b]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
