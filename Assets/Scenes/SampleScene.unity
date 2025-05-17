@@ -1517,8 +1517,16 @@ PrefabInstance:
       value: BearRenderer
       objectReference: {fileID: 0}
     - target: {fileID: 4167604363893978387, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167604363893978387, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167604363893978387, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4204745970528308005, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1567,6 +1575,10 @@ PrefabInstance:
     - target: {fileID: 6895651451547570405, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895651451547570405, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7412919026540292890, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: sfxSource

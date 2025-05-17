@@ -9,7 +9,6 @@ namespace QuickTimeEvents.events
         
         public override void Started(Transform player)
         {
-            Debug.Log("PushButtonQTE: Started");
         }
 
         public override void OnButtonPressed(Transform player)

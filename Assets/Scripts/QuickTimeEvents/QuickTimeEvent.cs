@@ -19,6 +19,8 @@ namespace QuickTimeEvents
         public abstract void OnButtonPressed(Transform player);
         
         public abstract void OnButtonReleased(Transform player);
+        
+        public bool Complete { get; set;}
 
         private void Start()
         {
@@ -32,8 +34,9 @@ namespace QuickTimeEvents
             eventManager.StartEvent(this);
         }
 
-        private void End()
+        public virtual void End()
         {
+            Complete = true;
         }
         
         protected void OnFail()

@@ -88,6 +88,17 @@
                     "action": "QuickTimeAction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d192d5b-3229-416a-9e9e-048977bbe0fd",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTimeAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

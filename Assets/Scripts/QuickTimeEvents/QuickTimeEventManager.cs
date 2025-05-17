@@ -1,4 +1,5 @@
 using System;
+using QuickTimeEvents.events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,8 +15,21 @@ namespace QuickTimeEvents
         {
             _uiButton = GetComponentInChildren<QuickTimeEventUI>();
             _uiButton.gameObject.SetActive(false);
+
+            if (_currentEvent is HoldButtonQTE)
+            {
+                _uiButton.EnableProgress();
+            }
         }
 
+        private void Update()
+        {
+            if (_currentEvent is HoldButtonQTE qte)
+            {
+                _uiButton.SetProgress(qte.Progress);
+            }
+        }
+        
         public void OnQuickTimeAction(InputAction.CallbackContext context)
         {
             if(_currentEvent == null) return;
@@ -54,6 +68,7 @@ namespace QuickTimeEvents
         private void StopQuickTimeEvent()
         {
             _uiButton.gameObject.SetActive(false);
+            _uiButton.DisableProgress();
             _currentEvent.OnCompleted -= RewardQuickTimeEvent;
             _currentEvent.OnFailed -= PunishQuickTimeEvent;
             _currentEvent = null;
