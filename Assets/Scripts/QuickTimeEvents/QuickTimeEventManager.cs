@@ -54,19 +54,21 @@ namespace QuickTimeEvents
         private void StopQuickTimeEvent()
         {
             _uiButton.gameObject.SetActive(false);
-            _currentEvent = null;
             _currentEvent.OnCompleted -= RewardQuickTimeEvent;
             _currentEvent.OnFailed -= PunishQuickTimeEvent;
+            _currentEvent = null;
         }
 
         private void RewardQuickTimeEvent()
         {
-            
+            StopQuickTimeEvent();
+            Debug.Log("reward quicktime event");
         }
 
         private void PunishQuickTimeEvent()
         {
-            
+            StopQuickTimeEvent();
+            Debug.Log("punish quicktime event");
         }
     }
 }

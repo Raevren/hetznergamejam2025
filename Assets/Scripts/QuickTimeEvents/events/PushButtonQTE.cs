@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace QuickTimeEvents.events
@@ -16,6 +17,20 @@ namespace QuickTimeEvents.events
             if(hasJumped) return;
             hasJumped = true;
             player.SendMessage("jump");
+        }
+
+        public void OnTriggerExit(Collider other)
+        {
+            if (!other.gameObject.CompareTag("LevelGenerator")) return;
+
+            if (hasJumped)
+            {
+                OnComplete();
+            }
+            else
+            {
+                OnFail();
+            }
         }
 
         public override void OnButtonReleased(Transform player)

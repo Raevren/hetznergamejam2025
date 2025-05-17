@@ -7,7 +7,8 @@ namespace QuickTimeEvents
     public abstract class QuickTimeEvent : MonoBehaviour
     {
         [SerializeField] private Key key;
-        [SerializeField] private QuickTimeEventManager eventManager;
+        
+        private QuickTimeEventManager eventManager;
         
         public Key Key => key;
         
@@ -18,6 +19,11 @@ namespace QuickTimeEvents
         public abstract void OnButtonPressed(Transform player);
         
         public abstract void OnButtonReleased(Transform player);
+
+        private void Start()
+        {
+            eventManager = FindFirstObjectByType<QuickTimeEventManager>();
+        }
 
         private void OnTriggerEnter(Collider other)
         {
