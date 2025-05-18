@@ -22,8 +22,9 @@ public class PlayerSpeed : MonoBehaviour
     [SerializeField] private QuickTimeEventManager quickTimeEventManager;
     private PlayerHealth _playerHealth;
 
-    private SpriteRenderer _bearRenderer;
+    [SerializeField] private SpriteRenderer bearRenderer;
     [SerializeField] private TMP_Text speedText; 
+    [SerializeField] private Sprite spriteLeft, spriteRight;
 
     /// <summary>
     /// The AudioSource playing sound effects for this bear
@@ -34,7 +35,6 @@ public class PlayerSpeed : MonoBehaviour
     
     private void Start()
     {
-        _bearRenderer = GetComponentInChildren<SpriteRenderer>();
         _playerHealth = GetComponent<PlayerHealth>();
 
         _playerHealth.OnRemoveHealth += () => Speed = 0;
@@ -112,9 +112,9 @@ public class PlayerSpeed : MonoBehaviour
             Speed = Mathf.Min(Speed, MaxSpeed);
         }
         _previousPress = pressedButton;
+        bearRenderer.sprite = pressedButton < 0 ? spriteLeft : spriteRight;
+        bearRenderer.transform.localPosition = new Vector3(0.1f * pressedButton, bearRenderer.transform.localPosition.y, bearRenderer.transform.localPosition.z);
 
-        _bearRenderer.transform.localPosition = new Vector3(0.1f * pressedButton, _bearRenderer.transform.localPosition.y, _bearRenderer.transform.localPosition.z);
-        _bearRenderer.flipX = pressedButton < 0;  
         transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previousPress);
     }
 

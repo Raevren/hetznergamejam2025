@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 5;
 
     [SerializeField] private HealthBar healthBar;
+    
+    [SerializeField] private GameObject damageEffect;
 
     #endregion
 
@@ -66,6 +68,8 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator Respawn()
     {
         isRespawning = true;
+        damageEffect.SetActive(true);
+        damageEffect.GetComponent<Animation>().Play();
         yield return new WaitForSeconds(0.5f);
         //TODO good animation
         isRespawning = false;

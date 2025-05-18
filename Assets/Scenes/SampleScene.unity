@@ -1589,6 +1589,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1041526031}
     - target: {fileID: 7412919026540292890, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
+      propertyPath: spriteRight
+      value: 
+      objectReference: {fileID: 21300000, guid: e919672744b556443962455543e2c65d, type: 3}
+    - target: {fileID: 7412919026540292890, guid: 211ed314ada804f0fb25ef5cb3d54e6f, type: 3}
       propertyPath: wheelLeftSFX
       value: 
       objectReference: {fileID: 8300000, guid: 18b797c09df9ca7408ad4cc0c66dbafb, type: 3}
