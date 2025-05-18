@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     
     [SerializeField] private GameObject damageEffect;
 
+    [SerializeField] private AudioSource failSound;
+    
     #endregion
 
     #region Properties
@@ -54,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
         health--;
         OnRemoveHealth?.Invoke();
         healthBar.RenderHealth();
+        failSound.Play();
 
         if (health <= 0)
         {
