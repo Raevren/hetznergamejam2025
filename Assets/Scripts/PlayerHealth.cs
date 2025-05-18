@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isRespawning = false;
     public bool IsAllowedToMove => Health > 0 && !isRespawning;
     public event Action OnRemoveHealth;
+    public event Action OnGameOver;
 
     #endregion
 
@@ -60,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            OnGameOver?.Invoke();
             LoadGameOver();
         }
         else
