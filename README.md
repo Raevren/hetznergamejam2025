@@ -33,6 +33,7 @@ In **Paws on the Wire** steuerst du einen mutigen Bären, der sich auf einem Hoc
 - Herausfordernde Quick-Time-Events
 - Liebevoll gezeichneter Bär in schwindelerregender Umgebung
 - Minimalistische Steuerung, aber maximale Spannung
+- Selbstkomponierter Soundtrack mit Ohrwurm-Garantie
 
 ## 👥 Team
 
