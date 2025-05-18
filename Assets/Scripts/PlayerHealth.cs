@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
         ReduceLive();
     }
 
-    private void ReduceLive()
+    public void ReduceLive()
     {
         health--;
         OnRemoveHealth?.Invoke();
