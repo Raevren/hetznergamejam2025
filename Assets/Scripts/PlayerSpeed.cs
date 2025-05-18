@@ -106,6 +106,8 @@ public class PlayerSpeed : MonoBehaviour
 
     private void TryIncreaseSpeed(int pressedButton)
     {
+        if(!_playerHealth.IsAllowedToMove) return;
+        
         _lastPressedTime = Time.time;
         if (_previousPress != pressedButton)
         {
