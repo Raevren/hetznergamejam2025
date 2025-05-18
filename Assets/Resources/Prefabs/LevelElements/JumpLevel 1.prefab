@@ -436,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5892892933987892029}
   m_Layer: 0
-  m_Name: JumpLevel
+  m_Name: JumpLevel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
