@@ -3,7 +3,7 @@
 *Ein Geschicklichkeits-Spiel entwickelt beim Hetzner Game Jam 2025*
 
 <p>
-  <a href="[Jetzt Spielen!](https://raevren.github.io/hetznergamejam2025/)" target="_blank">
+  <a href="https://raevren.github.io/hetznergamejam2025/" target="_blank">
     <img src="https://img.shields.io/badge/Jetzt%20Spielen-%F0%9F%8E%AE-brightgreen?style=for-the-badge">
   </a>
 </p>
