@@ -2,6 +2,7 @@ using System;
 using QuickTimeEvents.events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace QuickTimeEvents
 {
@@ -32,8 +33,10 @@ namespace QuickTimeEvents
         
         public void OnQuickTimeAction(InputAction.CallbackContext context)
         {
-            if(_currentEvent == null) return;
-            if(!Keyboard.current[_currentEvent.Key].isPressed) return;
+            var keyControl = context.control as KeyControl;
+            
+            if(_currentEvent == null || keyControl == null) return;
+            if(_currentEvent.Key != keyControl.keyCode) return;
             
             //TODO animate displayed button
             

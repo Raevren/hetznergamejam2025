@@ -16,7 +16,7 @@ namespace QuickTimeEvents.events
         
         private bool IsSuccesfully => ElepsedTime >= holdTime;
         
-        public float Progress => ElepsedTime / holdTime;
+        public float Progress => startPressed == 0 ? 0 : ElepsedTime / holdTime;
         
         public override void Started(Transform player)
         {
@@ -40,6 +40,7 @@ namespace QuickTimeEvents.events
         public override void OnButtonReleased(Transform player)
         {
             Debug.Log("HoldButtonQTE: OnButtonReleased");
+            playerSprite.transform.localScale = Vector3.one;
             if(Complete) return;
             Debug.Log("HoldButtonQTE: OnButtonReleased Not comp");
             if (IsSuccesfully)
@@ -47,7 +48,7 @@ namespace QuickTimeEvents.events
                 Debug.Log("HoldButtonQTE: OnButtonReleased Successfully");
                 OnComplete();
             }
-
+            
             startPressed = 0;
         }
 
@@ -64,6 +65,7 @@ namespace QuickTimeEvents.events
 
         public void OnTriggerExit(Collider other)
         {
+            if(startPressed == 0) return;
             if (!other.gameObject.CompareTag("LevelGenerator")) return;
             Debug.Log("HoldButtonQTE: OnTriggerExit");
             if(Complete) return;
