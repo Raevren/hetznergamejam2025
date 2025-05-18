@@ -8,6 +8,8 @@
   </a>
 </p>
 
+![Paws on the Wire Screenshot](https://github.com/Raevren/hetznergamejam2025/raw/main/docs/screen_shot_start_screen.png)
+
 ## 🎮 Gameplay
 
 In **Paws on the Wire** steuerst du einen mutigen Bären, der sich auf einem Hochseil in schwindelerregender Höhe behaupten muss. Durch abwechselndes Drücken von **A** und **D** balancierst du ihn Schritt für Schritt über das Seil. Reaktionsvermögen ist gefragt – während des Laufs fordern **Quick-Time-Events** deine Nerven und dein Timing heraus!
