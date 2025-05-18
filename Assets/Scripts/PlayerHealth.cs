@@ -73,7 +73,8 @@ public class PlayerHealth : MonoBehaviour
         isRespawning = true;
         damageEffect.SetActive(true);
         damageEffect.GetComponent<Animation>().Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
+        damageEffect.SetActive(false);
         //TODO good animation
         isRespawning = false;
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
