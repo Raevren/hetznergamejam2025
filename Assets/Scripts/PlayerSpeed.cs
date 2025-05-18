@@ -113,7 +113,6 @@ public class PlayerSpeed : MonoBehaviour
         }
         _previousPress = pressedButton;
         bearRenderer.sprite = pressedButton < 0 ? spriteLeft : spriteRight;
-        bearRenderer.transform.localPosition = new Vector3(0.1f * pressedButton, bearRenderer.transform.localPosition.y, bearRenderer.transform.localPosition.z);
 
         transform.RotateAround(balancePivot.position, new Vector3(0,0,1), -10 *  _previousPress);
     }

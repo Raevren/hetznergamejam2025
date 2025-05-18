@@ -10,11 +10,13 @@ namespace QuickTimeEvents
     {
         private QuickTimeEvent _currentEvent;
         private QuickTimeEventUI _uiButton;
+        private PlayerHealth _playerHealth;
         public bool IsActive => _currentEvent != null;
 
         private void Start()
         {
             _uiButton = GetComponentInChildren<QuickTimeEventUI>();
+            _playerHealth = GetComponent<PlayerHealth>();
             _uiButton.gameObject.SetActive(false);
 
             if (_currentEvent is HoldButtonQTE)
@@ -86,6 +88,7 @@ namespace QuickTimeEvents
         private void PunishQuickTimeEvent()
         {
             StopQuickTimeEvent();
+            _playerHealth.ReduceLive();
             Debug.Log("punish quicktime event");
         }
     }

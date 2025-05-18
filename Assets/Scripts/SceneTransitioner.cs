@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitioner : MonoBehaviour
@@ -9,6 +10,11 @@ public class SceneTransitioner : MonoBehaviour
     private Animator _animator;
 
     private int _sceneToLoad;
+
+    /// <summary>
+    /// The parent audio mixer group for smooth fading
+    /// </summary>
+    [SerializeField] private AudioMixer audioMixer;
 
     private void Awake()
     {
@@ -35,6 +41,7 @@ public class SceneTransitioner : MonoBehaviour
         
         _sceneToLoad = sceneIndex;
         _animator.SetTrigger("StartLoading");
+        StartCoroutine(FadeAudio(-40f, 0.75f));
     }
 
     /// <summary>
@@ -51,6 +58,7 @@ public class SceneTransitioner : MonoBehaviour
     {
         // The scene has loaded
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        StartCoroutine(FadeAudio(0f, 0.75f));
         _animator.SetTrigger("EndLoading");
     }
     
@@ -59,6 +67,24 @@ public class SceneTransitioner : MonoBehaviour
     /// </summary>
     public void DestroyObject()
     {
+        StopAllCoroutines();
+        audioMixer.SetFloat("fadeVolume", 0f);
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Fade the master audio level to a wanted db level over time
+    /// </summary>
+    private IEnumerator FadeAudio(float wantedDB, float howLong)
+    {
+        audioMixer.GetFloat("fadeVolume", out var startingVolume);
+        var timePassed = 0f;
+        while (timePassed < howLong)
+        {
+            timePassed += Time.deltaTime;
+            audioMixer.SetFloat("fadeVolume", Mathf.Lerp(startingVolume, wantedDB, timePassed / howLong));
+            yield return new WaitForEndOfFrame();
+        }
+        audioMixer.SetFloat("fadeVolume", wantedDB);
     }
 }

@@ -33,6 +33,7 @@ namespace QuickTimeEvents.events
         public override void OnButtonPressed(Transform player)
         {
             playerSprite.transform.localScale = new Vector3(1, 0.3f, 1);
+            player.Find("OrchHit_SFX").GetComponent<AudioSource>().Play(); // Really cursed, but it works :trollface:
             startPressed = Time.time;
             Debug.Log("HoldButtonQTE: OnButtonPressed");
         }
@@ -65,13 +66,12 @@ namespace QuickTimeEvents.events
 
         public void OnTriggerExit(Collider other)
         {
-            if(startPressed == 0) return;
             if (!other.gameObject.CompareTag("LevelGenerator")) return;
             Debug.Log("HoldButtonQTE: OnTriggerExit");
             if(Complete) return;
 
             Debug.Log("HoldButtonQTE: OnTriggerExit Not comp");
-            if (IsSuccesfully)
+            if (startPressed != 0 && IsSuccesfully)
             {
                 Debug.Log("HoldButtonQTE: OnTriggerExit Successfully");
                 OnComplete();
