@@ -38,6 +38,7 @@ public class PlayerSpeed : MonoBehaviour
         _playerHealth = GetComponent<PlayerHealth>();
 
         _playerHealth.OnRemoveHealth += () => Speed = 0;
+        _playerHealth.OnGameOver += () => PlayerPrefs.SetFloat("score", score);
     }
 
     private void Update()
