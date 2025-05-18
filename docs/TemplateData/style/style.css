@@ -102,7 +102,7 @@ body {
 
 h1{
     color: white;
-    font-family: "Arial Rounded MT Bold", monospace;
+    font-family: "Magic Sound", monospace;
     font-size: 50px;
     text-align: center;
 }
@@ -143,5 +143,10 @@ small{
         width: calc(90vw - 10vw);
         height: calc((90vw - 10vw) * 9 / 16); /* Width-based height calculation */
     }
+}
+
+@font-face {
+    font-family: 'Magic Sound';
+    src: url('../../../Assets/Magic Sound.ttf') format('truetype');
 }
 
