@@ -18,11 +18,6 @@ namespace QuickTimeEvents
             _uiButton = GetComponentInChildren<QuickTimeEventUI>();
             _playerHealth = GetComponent<PlayerHealth>();
             _uiButton.gameObject.SetActive(false);
-
-            if (_currentEvent is HoldButtonQTE)
-            {
-                _uiButton.EnableProgress();
-            }
         }
 
         private void Update()
@@ -66,6 +61,11 @@ namespace QuickTimeEvents
             
             _uiButton.SetText(_currentEvent.Key.ToString());
             _uiButton.gameObject.SetActive(true);
+            
+            if (_currentEvent is HoldButtonQTE)
+            {
+                _uiButton.EnableProgress();
+            }
             
             _currentEvent.Started(transform);
         }
