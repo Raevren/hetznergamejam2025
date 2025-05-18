@@ -147,6 +147,6 @@ small{
 
 @font-face {
     font-family: 'Magic Sound';
-    src: url('../../../Assets/Magic Sound.ttf') format('truetype');
+    src: url('https://raw.githubusercontent.com/Raevren/hetznergamejam2025/main/Assets/Magic Sound.ttf') format('truetype');
 }
 
