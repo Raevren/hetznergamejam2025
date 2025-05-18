@@ -66,13 +66,12 @@ namespace QuickTimeEvents.events
 
         public void OnTriggerExit(Collider other)
         {
-            if(startPressed == 0) return;
             if (!other.gameObject.CompareTag("LevelGenerator")) return;
             Debug.Log("HoldButtonQTE: OnTriggerExit");
             if(Complete) return;
 
             Debug.Log("HoldButtonQTE: OnTriggerExit Not comp");
-            if (IsSuccesfully)
+            if (startPressed != 0 && IsSuccesfully)
             {
                 Debug.Log("HoldButtonQTE: OnTriggerExit Successfully");
                 OnComplete();
