@@ -7,6 +7,8 @@ TagManager:
   - LevelGenerator
   - LevelParent
   - SpawnTrigger
+  - SpawnPoint
+  - BGM
   layers:
   - Default
   - TransparentFX

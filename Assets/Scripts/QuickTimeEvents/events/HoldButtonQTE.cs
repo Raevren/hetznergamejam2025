@@ -33,6 +33,7 @@ namespace QuickTimeEvents.events
         public override void OnButtonPressed(Transform player)
         {
             playerSprite.transform.localScale = new Vector3(1, 0.3f, 1);
+            player.Find("OrchHit_SFX").GetComponent<AudioSource>().Play(); // Really cursed, but it works :trollface:
             startPressed = Time.time;
             Debug.Log("HoldButtonQTE: OnButtonPressed");
         }
